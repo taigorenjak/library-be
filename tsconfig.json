@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",  // Izhodna mapa
+    "rootDir": "./src"    // Mapa z izvorno kodo
+  },
+  "include": ["src/**/*.ts"],  // Vključite vse .ts datoteke v mapo src
+  "exclude": ["node_modules"]  // Izključite node_modules
+}
