@@ -1,14 +1,15 @@
+// src/users/entity/user.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class User {
     @PrimaryGeneratedColumn()
-    id!: number;
+    id!: number;  // Dodaj '!' za obvladovanje napake
 
     @Column()
     name!: string;
 
-    @Column({ unique: true })
+    @Column()
     email!: string;
 
     @Column()

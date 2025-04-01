@@ -4,7 +4,7 @@ import { PassportModule } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UsersService } from '../users/users.service';
-import { UsersModule } from '../users/users.module';
+import { UserModule } from '../users/users.module';
 import { JwtStrategy } from './jwt.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
@@ -20,7 +20,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
                 signOptions: { expiresIn: '1h' },
             }),
         }),
-        UsersModule,
+        UserModule,
     ],
     controllers: [AuthController],
     providers: [AuthService, UsersService, JwtStrategy],
