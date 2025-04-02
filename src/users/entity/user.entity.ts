@@ -1,17 +1,20 @@
-// src/users/entity/user.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Review } from '../../reviews/entity/review.entity';
 
 @Entity()
 export class User {
     @PrimaryGeneratedColumn()
-    id!: number;  // Dodaj '!' za obvladovanje napake
+    id!: number;
 
     @Column()
     name!: string;
 
-    @Column()
+    @Column({ unique: true })
     email!: string;
 
     @Column()
     password!: string;
+
+    @OneToMany(() => Review, (review) => review.user)
+    reviews!: Review[];
 }

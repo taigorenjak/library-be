@@ -1,26 +1,26 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Review } from '../../reviews/entity/review.entity';
 
 @Entity()
 export class Book {
   @PrimaryGeneratedColumn()
-  id!: number;  // Dodajemo '!' za zagotavljanje, da bo vrednost inicializirana kasneje
+  id!: number;
 
   @Column()
-  title!: string;  // Dodajemo '!' za zagotavljanje, da bo vrednost inicializirana kasneje
+  title!: string;
 
   @Column()
-  author!: string;  // Dodajemo '!' za zagotavljanje, da bo vrednost inicializirana kasneje
+  author!: string;
 
   @Column()
-  year!: number;  // Dodajemo '!' za zagotavljanje, da bo vrednost inicializirana kasneje
+  year!: number;
 
   @Column()
-  genre!: string;  // Dodajemo '!' za zagotavljanje, da bo vrednost inicializirana kasneje
+  genre!: string;
 
-  @Column({ nullable: true })
-  description?: string;  // Dodajemo '!' za zagotavljanje, da bo vrednost inicializirana kasneje
+  @Column()
+  description!: string;
 
-  constructor(partial: Partial<Book>) {
-    Object.assign(this, partial);
-  }
+  @OneToMany(() => Review, (review) => review.book)
+  reviews!: Review[];
 }

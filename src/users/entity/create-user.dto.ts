@@ -1,11 +1,13 @@
-export class CreateUserDto {
-    readonly name: string;
-    readonly email: string;
-    readonly password: string;
+import { IsNotEmpty, IsEmail } from 'class-validator';
 
-    constructor(name: string, email: string, password: string) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
+export class CreateUserDto {
+    @IsNotEmpty()
+    @IsEmail()
+    email?: string;
+
+    @IsNotEmpty()
+    password?: string;
+
+    @IsNotEmpty()
+    name?: string;
 }
