@@ -1,7 +1,7 @@
 {
   "name": "library-be",
   "version": "0.0.1",
-  "description": "",
+  "description": "<p align=\"center\">\r   <a href=\"http://nestjs.com/\" target=\"blank\"><img src=\"https://nestjs.com/img/logo-small.svg\" width=\"120\" alt=\"Nest Logo\" /></a>\r </p>",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
@@ -28,8 +28,12 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/typeorm": "^10.0.2",
     "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^2.2.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "pg": "^8.13.1",
@@ -42,8 +46,10 @@
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
     "@types/bcrypt": "^5.0.2",
-    "@types/express": "^5.0.0",
+    "@types/body-parser": "^1.19.5",
+    "@types/express": "^5.0.1",
     "@types/jest": "^29.5.2",
+    "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^20.3.1",
     "@types/passport-jwt": "^4.0.1",
     "@types/supertest": "^6.0.0",
@@ -78,5 +84,19 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taigorenjak/library-be.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/taigorenjak/library-be/issues"
+  },
+  "homepage": "https://github.com/taigorenjak/library-be#readme"
 }
