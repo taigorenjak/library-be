@@ -19,28 +19,38 @@ export class AuthService {
         // Preveri, če uporabnik že obstaja
         const existingUser = await this.userService.findByEmail(email);
         if (existingUser) {
-            throw new UnauthorizedException('User with this email already exists');
+            throw new UnauthorizedException('Uporabnik s tem email naslovom že obstaja');
         }
 
         // Šifriranje gesla
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Registriraj uporabnika z zakodiranim geslom
+        // Registriraj novega uporabnika z zakodiranim geslom
         const newUser = { ...userRegisterDto, password: hashedPassword };
         return await this.userService.create(newUser);
     }
 
-    async validateUser(userLoginDto: UserLoginDto) {
-        const user: User = await this.userService.findByEmail(userLoginDto.email);
-        if (user && (await bcrypt.compare(userLoginDto.password, user.password))) {
-            return user;
+    async validateUser(userLoginDto: UserLoginDto): Promise<User> {
+        const user = await this.userService.findByEmail(userLoginDto.email);
+
+        if (!user) {
+            throw new UnauthorizedException('Napačen email ali geslo');
         }
-        throw new UnauthorizedException('Bad login');
+
+        const isPasswordValid = await bcrypt.compare(userLoginDto.password, user.password);
+
+        if (!isPasswordValid) {
+            throw new UnauthorizedException('Napačen email ali geslo');
+        }
+
+        return user;
     }
 
     async login(userLoginDto: UserLoginDto) {
         const user = await this.validateUser(userLoginDto);
+
         const payload = { email: user.email, sub: user.id };
+
         return {
             access_token: this.jwtService.sign(payload),
         };
